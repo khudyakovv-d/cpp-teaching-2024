@@ -10,7 +10,7 @@ Vector::Vector() {
 Vector::Vector(int size) {
     this->arr_ = new int[size]{};
     this->size_ = size;
-    std::cout << "Create vector " << this << "with size " << size << "\n";
+    std::cout << "Create vector " << this << " with size " << size << "\n";
 }
 
 int &Vector::operator[](int i) {
@@ -51,3 +51,26 @@ Vector &Vector::operator=(const Vector &vec) {
     return *this;
 }
 
+Vector operator+(const Vector &vec1, const Vector &vec2) {
+    if (vec1.size() != vec2.size()) {
+        throw std::length_error("Vectors must be same size");
+    }
+
+    Vector v = Vector(vec1.size());
+
+    for (int i = 0; i < vec1.size(); i++) {
+        v[i] = vec1[i] + vec2[i];
+    }
+
+    std::cout << "Sum " << &vec1 << " and " << &vec2 << " to " << &v << "\n";
+
+    return v;
+}
+
+Vector::Vector(Vector &&vec) noexcept {
+    this->arr_ = vec.arr_;
+    this->size_ = vec.size_;
+    vec.arr_ = nullptr;
+    vec.size_ = 0;
+    std::cout << "Create vector " << this << " with move " << &vec << "\n";
+}
