@@ -26,7 +26,7 @@ int Vector::size() const {
 }
 
 Vector::~Vector() {
-    delete(this->arr_);
+    delete[] this->arr_;
     std::cout << "Delete vector " << this << "\n";
 }
 
