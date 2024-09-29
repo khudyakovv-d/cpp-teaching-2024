@@ -2,7 +2,12 @@
 #include "vector.h"
 #include "gtest/gtest.h"
 
-Vector foo(Vector vec) {
+Vector foo1(Vector vec) {
+    std::cout << "Size: " << vec.size() << std::endl;
+    return vec;
+}
+
+Vector foo2(Vector &&vec) {
     std::cout << "Size: " << vec.size() << std::endl;
     return vec;
 }
@@ -27,7 +32,17 @@ TEST(vector_test, vector_copy_construct) {
 
 TEST(vector_test, vector_copy_construct_in_func_args) {
     Vector v = Vector(10);
-    foo(v);
+    foo1(v);
+}
+
+TEST(vector_test, vector_move_construct_in_func_args_1) {
+    foo2(Vector(10));
+}
+
+TEST(vector_test, vector_move_construct_in_func_args_2) {
+    Vector v = Vector(10);
+    foo2(std::move(v));
+    //ASSERT_EQ(v.size(), 10);
 }
 
 TEST(vector_test, vector_copy_operator) {
@@ -35,6 +50,17 @@ TEST(vector_test, vector_copy_operator) {
     Vector v2 = Vector();
     v2 = v1;
     ASSERT_EQ(v1.size(), v2.size());
+}
+
+TEST(vector_test, vector_move_operator) {
+    Vector v1 = Vector(20);
+    v1 = Vector(10);
+
+    // Vector v1 = Vector(20);
+    // {
+    //     v1 = Vector(10);
+    // }
+    // std::cout << v1.size();
 }
 
 TEST(vector_test, vector_sum) {

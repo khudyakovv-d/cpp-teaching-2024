@@ -13,6 +13,7 @@ public:
     int &operator[](int i);
     int const &operator[](int i) const;
     Vector &operator=(const Vector &vec);
+    Vector &operator=(Vector &&vec);
     int size() const;
 };
 

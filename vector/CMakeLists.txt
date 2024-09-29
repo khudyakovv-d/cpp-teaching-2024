@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5.0)
 project(vector VERSION 0.1.0 LANGUAGES C CXX)
 
 #выключает copy elision
-add_compile_options(-fno-elide-constructors)
+#add_compile_options(-fno-elide-constructors)
 
 set(CMAKE_CXX_STANDARD 17)
 

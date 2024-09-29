@@ -1,2 +1,1 @@
-add_library(vectorl vector.cpp vector.h) 
-
+add_library(vectorl vector.cpp vector.h)

@@ -74,3 +74,16 @@ Vector::Vector(Vector &&vec) noexcept {
     vec.size_ = 0;
     std::cout << "Create vector " << this << " with move " << &vec << "\n";
 }
+
+Vector &Vector::operator=(Vector &&vec) {
+delete[] this->arr_;
+
+    this->arr_ = vec.arr_;
+    this->size_ = vec.size_;
+
+    vec.arr_ = nullptr;
+    vec.size_ = 0;
+
+    std::cout << "Move " << &vec << " to " << this << "\n";
+    return *this;
+}
