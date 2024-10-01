@@ -59,5 +59,12 @@
         "variant": "cpp",
         "vector": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "cmake.debugConfig": {
+		"name": "Debug CMake project",
+		"type": "lldb", 
+		"request": "launch",
+		"program": "${command:cmake.launchTargetPath}",
+		"args": []
+	}
 }
